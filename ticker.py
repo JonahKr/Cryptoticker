@@ -35,7 +35,7 @@ class RunText(SampleBase):
                 mytext += cc+":"
                 counter = 0
                 for fc in self.fiatcurrencies:
-                    mytext += self.data[cryptoids[counter]][fc]+" - "+fc+", "
+                    mytext += self.data[self.cryptoids[counter]][fc]+" - "+fc+", "
                     counter = counter +1
                 mytext += "   "
 
