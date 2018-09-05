@@ -64,9 +64,8 @@ def getCurrencyPriceById(ccidlist,fclist):
 				data = json.loads(apidata.text)
                 print str(data)
                 price = round(float(data["data"]["quotes"][fc]["price"]), 2)
-				ret_data_sub.insert(fc,price);
-
-			re_data.insert(id,ret_data_sub)
+                ret_data_sub.insert(fc,price)
+            ret_data.insert(id,ret_data_sub)
 
 		return ret_data
 	except Exception as e:
