@@ -13,13 +13,13 @@ class RunText(SampleBase):
         super(RunText, self).__init__(*args, **kwargs)
         self.parser.add_argument("-t", "--text", help="The text to scroll on the RGB LED panel", default="Hello world!")
 
-        self.cryptocurrencies = getCryptoProve(config["cryptocurrencies"])
+        self.cryptocurrencies = api.getCryptoProve(config["cryptocurrencies"])
         self.fiatcurrencies = config["fiatcurrencies"]
-        self.cryptoids = getCryptoId(self.cryptocurrencies)
-        self.data = getCurrencyPriceById(cryptocurrencies, fiatcurrencies)
+        self.cryptoids = api.getCryptoId(self.cryptocurrencies)
+        self.data = api.getCurrencyPriceById(cryptocurrencies, fiatcurrencies)
 
     def updateData():
-        self.data = getCurrencyPriceById(cryptocurrencies, fiatcurrencies)
+        self.data = api.getCurrencyPriceById(cryptocurrencies, fiatcurrencies)
         print data
 
     def run(self):
