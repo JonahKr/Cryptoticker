@@ -56,8 +56,6 @@ def getCryptoId(ccurrencylist):
 def getCurrencyPriceById(ccidlist,fclist):
     try:
         print "trying priceget"
-        print str(ccidlist)
-        print str(fclist)
         ret_data = {}
         for id in ccidlist:
             for fc in fclist:
