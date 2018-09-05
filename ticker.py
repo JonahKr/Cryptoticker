@@ -6,7 +6,9 @@ import json
 
 with open('config.json', 'r') as f:
     config = json.load(f)
-
+    config["fiatcurrencies"]
+    config["cryptocurrencies"]
+    
 class RunText(SampleBase):
 
     def __init__(self, *args, **kwargs):
@@ -14,7 +16,7 @@ class RunText(SampleBase):
         self.parser.add_argument("-t", "--text", help="The text to scroll on the RGB LED panel", default="Hello world!")
 
         self.cryptocurrencies = api.getCryptoProve(config["cryptocurrencies"])
-        self.fiatcurrencies = str(config["fiatcurrencies"])
+        self.fiatcurrencies = config["fiatcurrencies"]
         print str(config["fiatcurrencies"])
         print str(self.fiatcurrencies)
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
