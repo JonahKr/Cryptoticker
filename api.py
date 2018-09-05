@@ -70,6 +70,7 @@ def getCurrencyPriceById(ccidlist,fclist):
                 price = round(float(data["data"]["quotes"][fc]["price"]), 2)
                 ret_data_sub[fc]=price
             ret_data["\""+id+"\""]=ret_data_sub
+            print ret_data
         return ret_data
     except Exception as e:
         print str(e)
