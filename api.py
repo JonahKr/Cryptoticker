@@ -67,6 +67,6 @@ def getCurrencyPriceById(ccidlist,fclist):
                 ret_data_sub.insert(fc,price)
             ret_data.insert(id,ret_data_sub)
         return ret_data
-	except Exception as e:
-		print str(e)
-		return None
+    except Exception as e:
+        print str(e)
+        return None
