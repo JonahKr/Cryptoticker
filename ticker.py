@@ -40,7 +40,7 @@ class RunText(SampleBase):
                 mytext += "   "
 
         except Exception as e:
-    		print str(e, 'utf-8')
+    		print str(e)
     		return None
 
         while True:

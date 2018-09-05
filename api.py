@@ -27,7 +27,7 @@ def getCryptoProve(ccurrencylist):
 				break
 		return return_cryptourrencylist
 	except Exception as e:
-		print str e
+		print str(e)
 		return None
 
 def getCryptoId(ccurrencylist):
@@ -49,7 +49,7 @@ def getCryptoId(ccurrencylist):
 				break
 		return return_idlist
 	except Exception as e:
-		print str(e, 'utf-8')
+		print str(e)
 		return None
 
 def getCurrencyPriceById(ccidlist,fclist):
@@ -68,5 +68,5 @@ def getCurrencyPriceById(ccidlist,fclist):
 
 		return ret_data
 	except Exception as e:
-		print str(e, 'utf-8')
+		print str(e)
 		return None
