@@ -65,9 +65,9 @@ def getCurrencyPriceById(ccidlist,fclist):
                 print str(data)
                 price = round(float(data["data"]["quotes"][fc]["price"]), 2)
                 ret_data_sub.insert(fc,price)
-            ret_data.insert(id,ret_data_sub)
 
-		return ret_data
+            ret_data.insert(id,ret_data_sub)
+        return ret_data
 	except Exception as e:
 		print str(e)
 		return None
