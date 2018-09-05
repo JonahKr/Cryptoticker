@@ -1,0 +1,5 @@
+{
+  "ccapi_url":"https://api.coinmarketcap.com/v1/ticker",
+  "cryptocurrencies":["BTC","ETH","XMR"],
+  "fiatcurrencies":["USD","EUR"]
+}
