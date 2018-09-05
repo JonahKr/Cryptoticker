@@ -8,7 +8,7 @@ ccapi_url = config['ccapi_url']
 ccapi_listing_url = config['ccapi_listing_url']
 
 # Check if the symbol really exists
-def getCryptoProve(ccurrencylist):
+def getCryptoProve(cryptocurrencylist):
 	try:
 		return_cryptourrencylist = []
 		apidata = requests.get(ccapi_listing_url)
@@ -30,7 +30,7 @@ def getCryptoProve(ccurrencylist):
 		print str(e)
 		return None
 
-def getCryptoId(ccurrencylist):
+def getCryptoId(cryptocurrencylist):
 	try:
 		return_idlist = []
 		apidata = requests.get(ccapi_listing_url)
