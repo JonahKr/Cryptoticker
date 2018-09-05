@@ -41,7 +41,7 @@ class RunText(SampleBase):
 
         except Exception as e:
     		print str(e)
-    		return None
+    		
 
         while True:
             offscreen_canvas.Clear()
