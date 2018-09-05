@@ -27,7 +27,7 @@ def getCryptoProve(ccurrencylist):
 				break
 		return return_cryptourrencylist
 	except Exception as e:
-		print str(e, 'utf-8')
+		print str e
 		return None
 
 def getCryptoId(ccurrencylist):
