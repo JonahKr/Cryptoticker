@@ -60,13 +60,13 @@ def getCurrencyPriceById(ccidlist,fclist):
 			for fc in fclist:
 				ret_data_sub={}
 				print (ccapi_url+"/"+id+"/"+"?convert="+fc)
-				apidata = requests.get(ccapi_url+"/"+id+"7"+"?convert="+fc)
+				apidata = requests.get(ccapi_url+"/"+id+"/"+"?convert="+fc)
 				data = json.loads(apidata.text)
 				price = "{0:.2f}".format(round(float(data["data"]["quotes"][fc]["price"]), 2))
 				ret_data_sub.insert(fc,price);
 
 			re_data.insert(id,ret_data_sub)
-        
+
 		return ret_data
 	except Exception as e:
 		print str(e)
