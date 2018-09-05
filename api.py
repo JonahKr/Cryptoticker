@@ -65,9 +65,9 @@ def getCurrencyPriceById(ccidlist,fclist):
                 print id
                 ret_data_sub={}
                 print "before printtry"
-                #print (ccapi_url+"/"+id+"/?convert="+fc)
+                print (ccapi_url+"/"+str(id)+"/?convert="+fc)
                 print "afterprinttry - before request"
-                apidata = requests.get(ccapi_url+"/"+id+"/"+"?convert="+fc)
+                apidata = requests.get(ccapi_url+"/"+str(id)+"/"+"?convert="+fc)
                 data = json.loads(apidata.text)
                 print "aftertextload"
                 price = round(float(data["data"]["quotes"][fc]["price"]), 2)
