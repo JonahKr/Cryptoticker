@@ -36,7 +36,7 @@ class RunText(SampleBase):
                 counter = 0
                 for fc in fiatcurrencies:
                     mytext += self.data[cryptoids[counter]][fc]+" - "+fc+", "
-                    counter ++
+                    counter = counter +1
                 mytext += "   "
 
         except Exception as e:
