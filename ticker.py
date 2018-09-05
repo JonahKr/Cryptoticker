@@ -19,7 +19,7 @@ class RunText(SampleBase):
         self.data = api.getCurrencyPriceById(self.cryptocurrencies, self.fiatcurrencies)
 
     def updateData():
-        self.data = api.getCurrencyPriceById(cryptocurrencies, fiatcurrencies)
+        self.data = api.getCurrencyPriceById(self.cryptocurrencies, self.fiatcurrencies)
         print data
 
     def run(self):
@@ -31,10 +31,10 @@ class RunText(SampleBase):
         my_text = "Nothing found - An error occured"
         try:
             mytext = ""
-            for cc in cryptocurrencies:
+            for cc in self.cryptocurrencies:
                 mytext += cc+":"
                 counter = 0
-                for fc in fiatcurrencies:
+                for fc in self.fiatcurrencies:
                     mytext += self.data[cryptoids[counter]][fc]+" - "+fc+", "
                     counter = counter +1
                 mytext += "   "
