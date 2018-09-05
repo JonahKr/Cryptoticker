@@ -8,7 +8,7 @@ ccapi_url = config['ccapi_url']
 ccapi_listing_url = config['ccapi_listing_url']
 
 # Check if the symbol really exists
-def getCryptoProve(cryptocurrencylist):
+def getCryptoProve(ccurrencylist):
 	try:
 		return_cryptourrencylist = []
 		apidata = requests.get(ccapi_listing_url)
@@ -16,7 +16,7 @@ def getCryptoProve(cryptocurrencylist):
 		cryptocurrencylist = data["data"]
 		#go through all cryptocurrencies and look if any of these is similar to one of the passed list
 		for cryptocurrency in cryptocurrencylist:
-			for currency in currencylist:
+			for currency in ccurrencylist:
 				#does the passed symbol equal the cryptocurrency symbol?
 				if(currency.upper()==cryptocurrency['symbol']):
 					return_cryptourrencylist.insert(len(return_cryptourrencylist),currency.upper())
@@ -29,16 +29,17 @@ def getCryptoProve(cryptocurrencylist):
 	except Exception as e:
 		print str(e)
 		return None
-
-def getCryptoId(cryptocurrencylist):
+#
+def getCryptoId(ccurrencylist):
 	try:
 		return_idlist = []
 		apidata = requests.get(ccapi_listing_url)
 		data = json.loads(apidata.text)
+        #api cryptocurrencylist
 		cryptocurrencylist = data["data"]
 		#go through all cryptocurrencies and look if any of these is similar to one of the passed list
 		for cryptocurrency in cryptocurrencylist:
-			for currency in currencylist:
+			for currency in ccurrencylist:
 				#does the passed symbol equal the cryptocurrency symbol?
 				if(currency.upper()==cryptocurrency['symbol']):
 					return_idlist.insert(len(return_idlist),cryptocurrency["id"])
