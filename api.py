@@ -54,18 +54,17 @@ def getCryptoId(ccurrencylist):
 		return None
 
 def getCurrencyPriceById(ccidlist,fclist):
-	try:
-		ret_data = {}
-		for id in ccidlist:
-			for fc in fclist:
-				ret_data_sub={}
-				print (ccapi_url+"/"+id+"/"+"?convert="+fc)
-				apidata = requests.get(ccapi_url+"/"+id+"/"+"?convert="+fc)
-				data = json.loads(apidata.text)
+    try:
+        ret_data = {}
+        for id in ccidlist:
+            for fc in fclist:
+                ret_data_sub={}
+                print (ccapi_url+"/"+id+"/"+"?convert="+fc)
+                apidata = requests.get(ccapi_url+"/"+id+"/"+"?convert="+fc)
+                data = json.loads(apidata.text)
                 print str(data)
                 price = round(float(data["data"]["quotes"][fc]["price"]), 2)
                 ret_data_sub.insert(fc,price)
-
             ret_data.insert(id,ret_data_sub)
         return ret_data
 	except Exception as e:
