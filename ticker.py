@@ -30,7 +30,7 @@ class RunText(SampleBase):
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
         font = graphics.Font()
-        font.LoadFont("./fonts/7x13.bdf")
+        font.LoadFont("./fonts/9x18B.bdf")
         textColor = graphics.Color(255, 255, 0)
         pos = offscreen_canvas.width
         my_text = "Nothing found - An error occured"
