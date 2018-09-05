@@ -44,7 +44,7 @@ class RunText(SampleBase):
                 for fc in self.fiatcurrencies:
                     print "in sec loop"
                     print str(fc)
-                    mytext += self.data[str(self.cryptoids[counter])][str(fc)]+" - "+str(fc)+", "
+                    mytext += str(self.data[str(self.cryptoids[counter])][fc]+" - "+fc+", ")
                     print mytext
                     counter = counter +1
                 mytext += "   "
