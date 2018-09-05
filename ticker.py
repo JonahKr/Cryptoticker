@@ -17,6 +17,9 @@ class RunText(SampleBase):
         self.fiatcurrencies = config["fiatcurrencies"]
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
         self.data = api.getCurrencyPriceById(self.cryptocurrencies, self.fiatcurrencies)
+        print "Setup complete"
+        print "Dataset:"
+        print str(self.data)
 
     def updateData():
         self.data = api.getCurrencyPriceById(self.cryptocurrencies, self.fiatcurrencies)
@@ -41,7 +44,7 @@ class RunText(SampleBase):
 
         except Exception as e:
     		print str(e)
-    		
+
 
         while True:
             offscreen_canvas.Clear()
