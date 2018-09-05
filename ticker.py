@@ -46,8 +46,8 @@ class RunText(SampleBase):
                     print self.cryptoids[counter]
                     price = self.data[self.cryptoids[counter]][str( fc)]
                     print price
-                    print str(price)
-                    mytext += str(self.data[str(self.cryptoids[counter])][fc]+" - "+fc+", ")
+                    mytext += price
+                    print mytest
                     mytext += " - "+str(fc)
                     print mytext
                     counter = counter +1
