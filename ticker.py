@@ -34,28 +34,18 @@ class RunText(SampleBase):
         textColor = graphics.Color(255, 255, 0)
         pos = offscreen_canvas.width
         my_text = "Nothing found - An error occured"
-        try:
-            mytext = ""
-            for cc in self.cryptocurrencies:
-                mytext += cc+":"
-                print mytext
-                counter = 0
-                for fc in self.fiatcurrencies:
-                    print "in sec loop"
-                    print fc
-                    print self.cryptoids[counter]
-                    price = self.data[self.cryptoids[counter]][str( fc)]
-                    print price
-                    mytext += str(price)+" - "
-                    print mytext
-                    mytext += str(fc)+"; "
-                    print mytext
-                    counter = counter +1
-                mytext += "   "
+        mytext = ""
+        for cc in self.cryptocurrencies:
+            mytext += cc+":"
+            print mytext
+            counter = 0
+            for fc in self.fiatcurrencies:
+                price = self.data[self.cryptoids[counter]][str( fc)]
+                mytext += str(price)+"-"
+                mytext += str(fc)+" ; "
+                counter = counter +1
 
-        except Exception as e:
-    		print str(e)
-
+            
 
         while True:
             offscreen_canvas.Clear()
