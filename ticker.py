@@ -15,6 +15,7 @@ class RunText(SampleBase):
 
         self.cryptocurrencies = api.getCryptoProve(config["cryptocurrencies"])
         self.fiatcurrencies = config["fiatcurrencies"]
+        print str(config["fiatcurrencies"])
         print str(self.fiatcurrencies)
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
         self.data = api.getCurrencyPriceById(self.cryptoids, self.fiatcurrencies)
