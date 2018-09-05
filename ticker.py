@@ -31,30 +31,30 @@ class RunText(SampleBase):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
         font = graphics.Font()
         font.LoadFont("./fonts/7x13.bdf")
-        textColor = graphics.Color(255, 255, 0)
+        textColor = graphics.Color(0, 255, 0)
         pos = offscreen_canvas.width
         my_text = "Nothing found - An error occured"
         my_text = ""
+        counter = 0
         for cc in self.cryptocurrencies:
             my_text += cc+":"
-            counter = 0
             for fc in self.fiatcurrencies:
                 price = self.data[self.cryptoids[counter]][str( fc)]
                 my_text += str(price)+"-"
                 my_text += str(fc)+" ; "
                 print my_text
-                counter = counter +1
+            counter = counter +1
 
 
 
         while True:
             offscreen_canvas.Clear()
-            len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
+            len = graphics.DrawText(offscreen_canvas, font, pos, 30, textColor, my_text)
             pos -= 1
             if (pos + len < 0):
                 pos = offscreen_canvas.width
 
-            time.sleep(0.05)
+            time.sleep(0.06)
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
 
