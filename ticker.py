@@ -23,11 +23,19 @@ class RunText(SampleBase):
         self.fiatcurrencies = api.getFiatProve(fiatcurrencies)
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
         self.data = api.getCurrencyPriceById(self.cryptoids, self.fiatcurrencies)
+        self.change.h24 = api.get24hChange(self.cryptoids)
+        self.change.h1 = api.get1hChange(self.cryptoids)
+        self.change.d7 = api.get7dChange(self.cryptoids)
+
         print ""
         print " \t\t\t\t~~~~~~~~~~ Setup complete ~~~~~~~~~~ "
         print ""
+
     def updateData():
         self.data = api.getCurrencyPriceById(self.cryptocurrencies, self.fiatcurrencies)
+        self.change.h24 = api.get24hChange(self.cryptoids)
+        self.change.h1 = api.get1hChange(self.cryptoids)
+        self.change.d7 = api.get7dChange(self.cryptoids)
 
 
     def run(self):

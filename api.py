@@ -55,7 +55,7 @@ def getFiatProve(fcurrencylist):
 		print str(e)
 		return None
 
-
+#Returns a list with all crypto ids for direkt api request
 def getCryptoId(ccurrencylist):
 	try:
 		return_idlist = []
@@ -79,6 +79,7 @@ def getCryptoId(ccurrencylist):
 		print str(e)
 		return None
 
+#returns data like data_example_data.json
 def getCurrencyPriceById(ccidlist,fclist):
     try:
         ret_data = {}
@@ -90,6 +91,48 @@ def getCurrencyPriceById(ccidlist,fclist):
                 price = round(float(data["data"]["quotes"][fc]["price"]), 2)
                 ret_data_sub[fc]=price
             ret_data[id]=ret_data_sub
+        return ret_data
+    except Exception as e:
+        print str(e)
+        return None
+
+#returns data like data_example_change.json of 24h change
+def get24hChange(ccidlist):
+    try:
+        ret_data = {}
+        for id in ccidlist:
+            apidata = requests.get(ccapi_url+"/"+str(id)+"/")
+            data = json.loads(apidata.text)
+            change = data["data"]["quotes"]["USD"]["percent_change_24h"]
+            ret_data[id]=change
+        return ret_data
+    except Exception as e:
+        print str(e)
+        return None
+
+#returns data like data_example_change.json of 7d change
+def get7dChange(ccidlist):
+    try:
+        ret_data = {}
+        for id in ccidlist:
+            apidata = requests.get(ccapi_url+"/"+str(id)+"/")
+            data = json.loads(apidata.text)
+            change = data["data"]["quotes"]["USD"]["percent_change_7d"]
+            ret_data[id]=change
+        return ret_data
+    except Exception as e:
+        print str(e)
+        return None
+
+#returns data like data_example_change.json of 1h change
+def get1hChange(ccidlist):
+    try:
+        ret_data = {}
+        for id in ccidlist:
+            apidata = requests.get(ccapi_url+"/"+str(id)+"/")
+            data = json.loads(apidata.text)
+            change = data["data"]["quotes"]["USD"]["percent_change_1h"]
+            ret_data[id]=change
         return ret_data
     except Exception as e:
         print str(e)
