@@ -1,4 +1,4 @@
-,# Cryptoticker
+# Cryptoticker
 This is the Code for a crypto ticker.
 Information source: https://coinmarketcap.com/api/
 Library:
