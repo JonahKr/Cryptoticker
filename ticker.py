@@ -26,6 +26,8 @@ class RunText(SampleBase):
         self.change24h = api.get24hChange(self.cryptoids)
         self.change1h = api.get1hChange(self.cryptoids)
         self.change7d = api.get7dChange(self.cryptoids)
+        self.green = graphics.Color(0,255,0)
+        self.red = graphics.Color(255,0,0)
 
         print ""
         print " \t\t\t\t~~~~~~~~~~ Setup complete ~~~~~~~~~~ "
@@ -64,7 +66,7 @@ class RunText(SampleBase):
             if (pos + len < 0):
                 pos = offscreen_canvas.width
 
-            time.sleep(0.06)
+            time.sleep(0.04)
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
 
