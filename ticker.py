@@ -33,9 +33,9 @@ class RunText(SampleBase):
 
     def updateData():
         self.data = api.getCurrencyPriceById(self.cryptocurrencies, self.fiatcurrencies)
-        self.change.h24 = api.get24hChange(self.cryptoids)
-        self.change.h1 = api.get1hChange(self.cryptoids)
-        self.change.d7 = api.get7dChange(self.cryptoids)
+        self.change24h = api.get24hChange(self.cryptoids)
+        self.change1h = api.get1hChange(self.cryptoids)
+        self.change7d = api.get7dChange(self.cryptoids)
 
 
     def run(self):
