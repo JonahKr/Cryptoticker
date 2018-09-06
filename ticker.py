@@ -19,13 +19,11 @@ class RunText(SampleBase):
         self.fiatcurrencies = fiatcurrencies
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
         self.data = api.getCurrencyPriceById(self.cryptoids, self.fiatcurrencies)
-        print "Setup complete"
-        print "Dataset:"
-        print str(self.data)
-
+        print ""
+        print " \t\t\t\t~~~~~~~~~~ Setup complete ~~~~~~~~~~ "
+        print ""
     def updateData():
         self.data = api.getCurrencyPriceById(self.cryptocurrencies, self.fiatcurrencies)
-        print data
 
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
@@ -41,8 +39,7 @@ class RunText(SampleBase):
             for fc in self.fiatcurrencies:
                 price = self.data[self.cryptoids[counter]][str( fc)]
                 my_text += str(price)+"-"
-                my_text += str(fc)+" ; "
-                print my_text
+                my_text += str(fc)+"   "
             counter = counter +1
 
 
