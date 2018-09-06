@@ -40,8 +40,8 @@ class RunText(SampleBase):
             my_text += cc+":"
             for fc in self.fiatcurrencies:
                 price = self.data[self.cryptoids[counter]][str( fc)]
-                my_text += str(price)+" "
-                my_text += str(fc)+"     "
+                my_text += str(price)+"-"
+                my_text += str(fc)+" ; "
                 print my_text
             counter = counter +1
 
@@ -49,7 +49,7 @@ class RunText(SampleBase):
 
         while True:
             offscreen_canvas.Clear()
-            len = graphics.DrawText(offscreen_canvas, font, pos, 22, textColor, my_text)
+            len = graphics.DrawText(offscreen_canvas, font, pos, 23, textColor, my_text)
             pos -= 1
             if (pos + len < 0):
                 pos = offscreen_canvas.width
