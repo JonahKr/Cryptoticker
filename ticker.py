@@ -4,6 +4,7 @@ import time
 import api
 import json
 
+
 with open('config.json', 'r') as f:
     config = json.load(f)
     fiatcurrencies = config['fiatcurrencies']
@@ -27,6 +28,7 @@ class RunText(SampleBase):
         print ""
     def updateData():
         self.data = api.getCurrencyPriceById(self.cryptocurrencies, self.fiatcurrencies)
+
 
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()

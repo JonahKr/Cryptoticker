@@ -1,0 +1,4 @@
+{
+  "ccapi_listing_url":"https://api.coinmarketcap.com/v2/listings/",
+  "ccapi_url":"https://api.coinmarketcap.com/v2/ticker"
+}
