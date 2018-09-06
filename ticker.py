@@ -15,6 +15,9 @@ class RunText(SampleBase):
         super(RunText, self).__init__(*args, **kwargs)
         self.parser.add_argument("-t", "--text", help="The text to scroll on the RGB LED panel", default="Hello world!")
 
+        print ""
+        print " \t\t\t\t~~~~~~~~~~ starting Setup ~~~~~~~~~~ "
+        print ""
         self.cryptocurrencies = api.getCryptoProve(config["cryptocurrencies"])
         self.fiatcurrencies = fiatcurrencies
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
