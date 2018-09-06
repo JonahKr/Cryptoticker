@@ -22,7 +22,7 @@ def getCryptoProve(ccurrencylist):
 			for ccurrency in ccurrencylist:
 				#does the passed symbol equal the cryptocurrency symbol?
 				if(ccurrency.upper()==cryptocurrency['symbol']):
-					return_cryptourrencylist.insert(len(return_cryptourrencylist),ccurrency.upper())
+					return_cryptourrencylist.append(ccurrency.upper())
 					print(cryptocurrency['name']+" \t("+cryptocurrency['symbol']+") \t has been proved to exist.")
 					break
 			#If the ammount of the passed list is reached, he don't has to test any further
@@ -42,7 +42,7 @@ def getFiatProve(fcurrencylist):
         for fcurrency in fcurrencylist:
             for supported_fiatcurrency in supported_fiatcurrencies:
                 if(supported_fiatcurrency == fcurrency.upper()):
-                    ret_fcurrencylist.insert(len(fcurrencylist), supported_fiatcurrency)
+                    ret_fcurrencylist.append(supported_fiatcurrency)
                     print ("\t\t("+fcurrency+")\t has been proved to exist.")
                     break
             if(ret_fcurrencylist[len(ret_fcurrencylist)-1]!=fcurrency.upper()):
@@ -68,7 +68,7 @@ def getCryptoId(ccurrencylist):
 			for currency in ccurrencylist:
 				#does the passed symbol equal the cryptocurrency symbol?
 				if(currency.upper()==cryptocurrency['symbol']):
-					return_idlist.insert(len(return_idlist),cryptocurrency["id"])
+					return_idlist.append(cryptocurrency["id"])
 					print("ID of\t\t("+cryptocurrency['symbol']+")  \t has been found.")
 					break
 			#If the ammount of the passed list is reached, he don't has to test any further

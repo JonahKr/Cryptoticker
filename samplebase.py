@@ -70,7 +70,7 @@ class SampleBase(object):
 
         try:
             # Start loop
-            print("Press CTRL-C to stop programm")
+            #print("Press CTRL-C to stop programm")
             self.run()
         except KeyboardInterrupt:
             print("Exiting\n")
