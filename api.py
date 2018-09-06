@@ -6,6 +6,7 @@ with open('api.json', 'r') as f:
 # access config
 ccapi_url = config['ccapi_url']
 ccapi_listing_url = config['ccapi_listing_url']
+supported_fiatcurrencies = config['supported_fiatcurrencies']
 
 # Check if the symbol really exists
 def getCryptoProve(ccurrencylist):
@@ -22,7 +23,7 @@ def getCryptoProve(ccurrencylist):
 				#does the passed symbol equal the cryptocurrency symbol?
 				if(ccurrency.upper()==cryptocurrency['symbol']):
 					return_cryptourrencylist.insert(len(return_cryptourrencylist),ccurrency.upper())
-					print(cryptocurrency['name']+" \t("+cryptocurrency['symbol']+") \t has been proved to be existing.")
+					print(cryptocurrency['name']+" \t("+cryptocurrency['symbol']+") \t has been proved to exist.")
 					break
 			#If the ammount of the passed list is reached, he don't has to test any further
 			if(len(ccurrencylist)==len(return_cryptourrencylist)):
@@ -31,6 +32,26 @@ def getCryptoProve(ccurrencylist):
 		return return_cryptourrencylist
 
 	except Exception as e:
+		print str(e)
+		return None
+
+#Check if the symbol really exists
+def getFiatProve(fcurrencylist):
+    try:
+        ret_fcurrencylist = []
+        for fcurrency in fcurrencylist:
+            for supported_fiatcurrency in supported_fiatcurrencies:
+                if(supported_fiatcurrency == fcurrency.upper()):
+                    ret_fcurrencylist.insert(len(fcurrencylist), supported_fiatcurrency)
+                    print ("\t\t("+fcurrency+")\t has been proved to exist.")
+                    break
+            if(ret_fcurrencylist[len(ret_fcurrencylist)-1]!=fcurrency.upper()):
+                print ""
+                print ("!!! Couldn't find \""+fcurrency+"\" as a valid currency. Please recheck. !!!")
+                print ""
+        #after for loops
+        return ret_fcurrencylist
+    except Exception as e:
 		print str(e)
 		return None
 

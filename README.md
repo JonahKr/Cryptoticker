@@ -40,5 +40,5 @@ Depending on which, how many *RGB-Pannel/s* and which modules you use, you have 
 You can find a detailed tutorial [here](https://github.com/hzeller/rpi-rgb-led-matrix).
 
 Last but not least you start the Ticker out of your projectfolder:
-`sudo ./starup.h`
+`sudo ./startup.h`
 🎉 Have fun 🎉

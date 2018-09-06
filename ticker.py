@@ -19,8 +19,8 @@ class RunText(SampleBase):
         print ""
         print " \t\t\t\t~~~~~~~~~~ starting Setup ~~~~~~~~~~ "
         print ""
-        self.cryptocurrencies = api.getCryptoProve(config["cryptocurrencies"])
-        self.fiatcurrencies = fiatcurrencies
+        self.cryptocurrencies = api.getCryptoProve(cryptocurrencies)
+        self.fiatcurrencies = api.getFiatProve(fiatcurrencies)
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
         self.data = api.getCurrencyPriceById(self.cryptoids, self.fiatcurrencies)
         print ""

@@ -1,4 +1,9 @@
 {
   "ccapi_listing_url":"https://api.coinmarketcap.com/v2/listings/",
-  "ccapi_url":"https://api.coinmarketcap.com/v2/ticker"
+  "ccapi_url":"https://api.coinmarketcap.com/v2/ticker",
+  "supported_fiatcurrencies":
+    ["AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP","HKD",
+     "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR","NOK", "NZD", "PHP",
+     "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "USD", "ZAR","BTC",
+     "ETH","XRP", "LTC", "BCH"]
 }
