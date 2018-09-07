@@ -1,4 +1,4 @@
 {
-  "cryptocurrencies":["BTC"],
-  "fiatcurrencies":["USD"]
+  "cryptocurrencies":["BTC","ETH"],
+  "fiatcurrencies":["USD","EUR"]
 }

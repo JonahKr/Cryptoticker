@@ -1,6 +1,7 @@
 from samplebase import SampleBase
 from rgbmatrix import graphics
 from threading import Thread
+from PIL import Image   
 import datetime
 import time
 import api
@@ -17,7 +18,6 @@ class RunText(SampleBase):
 
     def __init__(self, *args, **kwargs):
         super(RunText, self).__init__(*args, **kwargs)
-        self.parser.add_argument("-t", "--text", help="The text to scroll on the RGB LED panel", default="Hello world!")
 
         print ""
         print " \t\t\t\t~~~~~~~~~~ starting Setup ~~~~~~~~~~ "
@@ -34,6 +34,8 @@ class RunText(SampleBase):
         self.red = graphics.Color(255,0,0)
         self.grey = graphics.Color(130,130,130)
         self.yellow = graphics.Color(255,255,0)
+        self.setupbool = False
+        self.iterationcounter = 0
 
         print ""
         print " \t\t\t\t~~~~~~~~~~ Setup complete ~~~~~~~~~~ "
@@ -52,47 +54,50 @@ class RunText(SampleBase):
         now = (datetime.datetime.now() - datetime.timedelta(hours=1)).time()
 
         while startup_time < now <shutdown_time:
-            print ".\t Timelock enabled"
-            #display Setup
-            offscreen_canvas = self.matrix.CreateFrameCanvas()
-            font = graphics.Font()
-            font.LoadFont("./fonts/10x20.bdf")
-            textColor = graphics.Color(255, 255, 0)
-            pos = offscreen_canvas.width
-            print ".\t Pannels setup"
-            #end display Setup
+            if self.setupbool==False:
 
-            print("Press CTRL-C to stop programm")
+                print ".\t Timelock enabled"
+                #display Setup
+                offscreen_canvas = self.matrix.CreateFrameCanvas()
+                font = graphics.Font()
+                font.LoadFont("./fonts/10x20.bdf")
+                textColor = graphics.Color(255, 255, 0)
+                print ".\t Pannels setup"
+                print("Press CTRL-C to stop programm")
+                self.setupbool = True
+                #end display Setup
+            pos = offscreen_canvas.width
+
 
             for x,cc in enumerate(self.cryptocurrencies):
 
-                colors=[]
                 change = ""+str(self.change24h[self.cryptoids[x]])+""
-                if (float(change)>0):
-                    colors.append(self.green)
+                if float(change)> 0.0:
+                    color=self.green
+                    change = "+"+change+"%"
+                elif float(change)< 0.0:
+                    color=self.red
                     change += "% "
-                if (float(change)==0):
-                    colors.append(self.grey)
+                else:
+                    color=self.grey
                     change += "%"
-                if (float(change)<0):
-                    colors.append(self.red)
-                    change += "% "
+
                 price = ""
                 for fc in self.fiatcurrencies:
                     price += str(self.data[self.cryptoids[x]][fc])+" "
-                    price += str(fc)+"   "
-
-
+                    price += str(fc)+"  "
 
                 while True:
                     offscreen_canvas.Clear()
                     sum = 0
                     #cryptocurrency
-                    sum = sum + graphics.DrawText(offscreen_canvas, font , pos, 23, self.yellow, cc+" ")
+                    sum = sum + graphics.DrawText(offscreen_canvas, font , pos, 23, self.yellow, cc+":")
                     # changing
-                    sum= sum + graphics.DrawText(offscreen_canvas, font , pos + sum, 23, colors[x], change )
+                    sum= sum + graphics.DrawText(offscreen_canvas, font , pos + sum, 23, color, change+" " )
                     #price in FCs
                     sum = sum + graphics.DrawText(offscreen_canvas, font , pos +sum , 23, self.blue, price)
+                    if (self.iterationcounter = 3):
+
                     pos -= 1
 
                     if (pos + sum - 15 < 0):
