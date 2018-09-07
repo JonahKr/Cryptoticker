@@ -1,7 +1,7 @@
 from samplebase import SampleBase
 from rgbmatrix import graphics
 from threading import Thread
-from PIL import Image   
+from PIL import Image
 import datetime
 import time
 import api
@@ -34,8 +34,10 @@ class RunText(SampleBase):
         self.red = graphics.Color(255,0,0)
         self.grey = graphics.Color(130,130,130)
         self.yellow = graphics.Color(255,255,0)
-        self.setupbool = False
         self.iterationcounter = 0
+        self.image = Image.open("./images/bc_logo.png").convert('RGB')
+        self.image.resize((32*8, 32), Image.ANTIALIAS)
+
 
         print ""
         print " \t\t\t\t~~~~~~~~~~ Setup complete ~~~~~~~~~~ "
@@ -54,8 +56,9 @@ class RunText(SampleBase):
         now = (datetime.datetime.now() - datetime.timedelta(hours=1)).time()
 
         while startup_time < now <shutdown_time:
-            if self.setupbool==False:
-
+            if self.iterationcounter ==3:
+                self.iterationcounter =1
+            elif self.iterationcounter == 0:
                 print ".\t Timelock enabled"
                 #display Setup
                 offscreen_canvas = self.matrix.CreateFrameCanvas()
@@ -64,10 +67,14 @@ class RunText(SampleBase):
                 textColor = graphics.Color(255, 255, 0)
                 print ".\t Pannels setup"
                 print("Press CTRL-C to stop programm")
-                self.setupbool = True
                 #end display Setup
+                self.iterationcounter +=1
+            else:
+                self.iterationcounter = +1
+
             pos = offscreen_canvas.width
 
+            img_width, img_height = self.image.size
 
             for x,cc in enumerate(self.cryptocurrencies):
 
@@ -86,8 +93,11 @@ class RunText(SampleBase):
                 for fc in self.fiatcurrencies:
                     price += str(self.data[self.cryptoids[x]][fc])+" "
                     price += str(fc)+"  "
-
+                xpos = 0
                 while True:
+                    xpos += 1
+                    if(xpos >    img_width):
+                        xpos = 0
                     offscreen_canvas.Clear()
                     sum = 0
                     #cryptocurrency
@@ -96,15 +106,19 @@ class RunText(SampleBase):
                     sum= sum + graphics.DrawText(offscreen_canvas, font , pos + sum, 23, color, change+" " )
                     #price in FCs
                     sum = sum + graphics.DrawText(offscreen_canvas, font , pos +sum , 23, self.blue, price)
-                    if (self.iterationcounter = 3):
+                    if (self.iterationcounter == 2):
 
+                        offscreen_canvas.SetImage(self.image,-xpos)
+                        offscreen_canvas.SetImage(self.image, -xpos + img_width)
+                    else:
+                        img_width = 0
                     pos -= 1
 
-                    if (pos + sum - 15 < 0):
+                    if (pos + sum + img_width < 0):
                         pos = offscreen_canvas.width
                         break
 
-                    time.sleep(0.04)
+                    time.sleep(0.03)
                     offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
 
