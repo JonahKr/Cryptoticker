@@ -67,15 +67,14 @@ class RunText(SampleBase):
             for x,cc in enumerate(self.cryptocurrencies):
 
                 colors=[]
-
                 change = ""+str(self.change24h[self.cryptoids[x]])+""
-                if (float(change)>0.00):
+                if (float(change)>0):
                     colors.append(self.green)
                     change += "% "
-                if (float(change)==0.00):
+                if (float(change)==0):
                     colors.append(self.grey)
                     change += "%"
-                if (float(change)<0.00):
+                if (float(change)<0):
                     colors.append(self.red)
                     change += "% "
                 price = ""
