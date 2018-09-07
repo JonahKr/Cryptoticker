@@ -84,12 +84,12 @@ def getCurrencyPriceById(ccidlist,fclist):
     try:
         ret_data = {}
         for id in ccidlist:
+            ret_data_sub={}
             for fc in fclist:
-                ret_data_sub={}
                 apidata = requests.get(ccapi_url+"/"+str(id)+"/"+"?convert="+fc)
                 data = json.loads(apidata.text)
                 price = round(float(data["data"]["quotes"][fc]["price"]), 2)
-                ret_data_sub[fc]=price
+                ret_data_sub[fc] = price
             ret_data[id]=ret_data_sub
         return ret_data
     except Exception as e:
