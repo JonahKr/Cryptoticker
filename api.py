@@ -69,7 +69,6 @@ def getCryptoId(ccurrencylist):
 				#does the passed symbol equal the cryptocurrency symbol?
 				if(currency.upper()==cryptocurrency['symbol']):
 					return_idlist.append(cryptocurrency["id"])
-					print("ID of\t\t("+cryptocurrency['symbol']+")  \t has been found.")
 					break
 			#If the ammount of the passed list is reached, he don't has to test any further
 			if(len(ccurrencylist)==len(return_idlist)):
