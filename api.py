@@ -17,7 +17,8 @@ def getCryptoProve(ccurrencylist):
         apidata = requests.get(ccapi_listing_url)
         data = json.loads(apidata.text)
         cryptocurrencylist = data["data"]
-        # go through all cryptocurrencies and look if any of these is similar to one of the passed list
+        
+    # go through all cryptocurrencies and look if any of these is similar to one of the passed list
     # cryptocurrency: all cryptocurrencies which are in the api
     # ccurrency :     all cryptocurrencies
         for cryptocurrency in cryptocurrencylist:

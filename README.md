@@ -1,5 +1,5 @@
 # Cryptoticker
-This is the Code for a crypto ticker.
+This is the Code for a crypto ticker. V 2.1
 Information source: https://coinmarketcap.com/api/
 Library:
 https://github.com/hzeller/rpi-rgb-led-matrix
