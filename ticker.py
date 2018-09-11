@@ -18,9 +18,6 @@ class Ticker(SampleBase):
     def __init__(self, *args, **kwargs):
         super(Ticker, self).__init__(*args, **kwargs)
 
-        print ""
-        print " \t\t\t\t~~~~~~~~~~ starting Setup ~~~~~~~~~~ "
-        print ""
         self.cryptocurrencies = api.getCryptoProve(cryptocurrencies)
         self.fiatcurrencies = api.getFiatProve(fiatcurrencies)
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
@@ -35,13 +32,9 @@ class Ticker(SampleBase):
         self.image.resize((32*8, 32), Image.LANCZOS)
 
 
-        print ""
-        print " \t\t\t\t~~~~~~~~~~ Setup complete ~~~~~~~~~~ "
-        print ""
 
 
     def run(self):
-        print "Startup :"
         #updating data
         self.data = api.getCurrencyPriceById(self.cryptoids, self.fiatcurrencies)
         self.change24h = api.get24hChange(self.cryptoids)
@@ -60,8 +53,8 @@ class Ticker(SampleBase):
                 offscreen_canvas = self.matrix.CreateFrameCanvas()
                 font = graphics.Font()
                 font.LoadFont("fonts/10x20.bdf")
-                textColor = graphics.Color(255, 255, 0)
-                print("Press CTRL-C to stop programm")
+                unifont = graphics.Font()
+                font.LoadFont("fonts/unifont-11.0.02.ttf")
                 #end display Setup
                 self.iterationcounter +=1
             else:
@@ -71,7 +64,6 @@ class Ticker(SampleBase):
             img_width, img_height = self.image.size
 
             for x,cc in enumerate(self.cryptocurrencies):
-
                 change = ""+str(self.change24h[self.cryptoids[x]])+""
                 if float(change)> 0.0:
                     color=graphics.Color(0,255,0)
@@ -98,6 +90,7 @@ class Ticker(SampleBase):
                     else:
                         #cryptocurrency
                         sum += graphics.DrawText(offscreen_canvas, font , pos, 23, graphics.Color(255,255,0), cc+":")
+                        sum += graphics.DrawText(offscreen_canvas, font , pos +sum , 23, graphics.Color(255,255,0), u"\u20BF")
                         # changing
                         sum += graphics.DrawText(offscreen_canvas, font , pos + sum, 23, color, change+" " )
                         #price in FCs
