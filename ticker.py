@@ -9,8 +9,6 @@ import json
 
 with open('config.json', 'r') as f:
     config = json.load(f)
-    fiatcurrencies = config['fiatcurrencies']
-    cryptocurrencies = config['cryptocurrencies']
 
 
 class Ticker(SampleBase):
@@ -18,19 +16,15 @@ class Ticker(SampleBase):
     def __init__(self, *args, **kwargs):
         super(Ticker, self).__init__(*args, **kwargs)
 
-        self.cryptocurrencies = api.getCryptoProve(cryptocurrencies)
-        self.fiatcurrencies = api.getFiatProve(fiatcurrencies)
+        self.cryptocurrencies = api.getCryptoProve(config['cryptocurrencies'])
+        self.fiatcurrencies = api.getFiatProve(config['fiatcurrencies'])
         self.cryptoids = api.getCryptoId(self.cryptocurrencies)
         self.data = api.getCurrencyPriceById(
             self.cryptoids, self.fiatcurrencies)
         self.change24h = api.get24hChange(self.cryptoids)
-        self.change1h = api.get1hChange(self.cryptoids)
-        self.change7d = api.get7dChange(self.cryptoids)
         self.iterationcounter = 0
         self.image = Image.open("images/bc_logo.png").convert('RGB')
-        scale = self.image.width, 32
-        self.image.thumbnail(scale, Image.ANTIALIAS)
-        self.image.resize((32 * 8, 32), Image.LANCZOS)
+        self.image.thumbnail((120, 32), Image.ANTIALIAS)
 
     def run(self):
         # updating data
@@ -46,15 +40,10 @@ class Ticker(SampleBase):
         while startup_time < now < shutdown_time:
             if self.iterationcounter == 3:
                 self.iterationcounter = 1
-
             elif self.iterationcounter == 0:
-                # display Setup
                 offscreen_canvas = self.matrix.CreateFrameCanvas()
                 font = graphics.Font()
                 font.LoadFont("fonts/10x20.bdf")
-                unifont = graphics.Font()
-                font.LoadFont("fonts/unifont-11.0.02.ttf")
-                # end display Setup
                 self.iterationcounter += 1
             else:
                 self.iterationcounter += 1
@@ -76,8 +65,8 @@ class Ticker(SampleBase):
 
                 price = ""
                 for fc in self.fiatcurrencies:
-                    price += str(self.data[self.cryptoids[x]][fc]) + " "
-                    price += str(fc) + "  "
+                    price += str(self.data[self.cryptoids[x]]
+                                 [fc]) + " " + str(fc) + "  "
 
                 while True:
                     offscreen_canvas.Clear()
@@ -90,8 +79,6 @@ class Ticker(SampleBase):
                         # cryptocurrency
                         sum += graphics.DrawText(offscreen_canvas, font,
                                                  pos, 23, graphics.Color(255, 255, 0), cc + ":")
-                        sum += graphics.DrawText(offscreen_canvas, font, pos +
-                                                 sum, 23, graphics.Color(255, 255, 0), u"\u20BF")
                         # changing
                         sum += graphics.DrawText(offscreen_canvas,
                                                  font, pos + sum, 23, color, change + " ")
