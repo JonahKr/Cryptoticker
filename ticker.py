@@ -25,6 +25,8 @@ class Ticker(SampleBase):
         self.iterationcounter = 0
         self.image = Image.open("images/bc_logo.png").convert('RGB')
         self.image.thumbnail((120, 32), Image.ANTIALIAS)
+        self.imagegm = Image.open("images/gm_logo.png").convert('RGB')
+        self.imagegm.thumbnail((120,30), Image.ANTIALIAS)
 
     def run(self):
         # updating data
@@ -38,7 +40,7 @@ class Ticker(SampleBase):
         now = (datetime.datetime.now() - datetime.timedelta(hours=1)).time()
 
         while startup_time < now < shutdown_time:
-            if self.iterationcounter == 3:
+            if self.iterationcounter == 6:
                 self.iterationcounter = 1
             elif self.iterationcounter == 0:
                 offscreen_canvas = self.matrix.CreateFrameCanvas()
@@ -50,6 +52,7 @@ class Ticker(SampleBase):
 
             pos = offscreen_canvas.width
             img_width, img_height = self.image.size
+            img_width_gm, img_height_gm = self.imagegm.size
 
             for x, cc in enumerate(self.cryptocurrencies):
                 change = "" + str(self.change24h[self.cryptoids[x]]) + ""
@@ -75,6 +78,9 @@ class Ticker(SampleBase):
                     if (self.iterationcounter == 2):
                         offscreen_canvas.SetImage(self.image, pos + sum)
                         imgsum = img_width
+                    elif(self.iterationcounter == 5):
+                        offscreen_canvas.SetImage(self.imagegm, pos + sum,1)
+                        imgsum = img_width_gm
                     else:
                         # cryptocurrency
                         sum += graphics.DrawText(offscreen_canvas, font,
